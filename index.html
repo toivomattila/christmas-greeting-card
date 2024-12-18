@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas!</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a472a, #0a2615);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .snow {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 80%;
+            position: relative;
+            z-index: 1;
+            animation: cardAppear 1s ease-out;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #c41e3a;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tree {
+            color: #1a472a;
+            font-size: 4rem;
+            line-height: 1;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        .signature {
+            font-style: italic;
+            color: #666;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body onload="createSnowflakes()">
+    <div class="card">
+        <h1>Merry Christmas!</h1>
+        <div class="tree">
+            🎄
+        </div>
+        <p>Wishing you a season filled with warmth and joy.</p>
+        <p>May your holidays sparkle with moments of love, laughter, and goodwill.</p>
+        <div class="signature">With love,<br>Your Name</div>
+    </div>
+
+    <script>
+        function createSnowflakes() {
+            const numberOfSnowflakes = 50;
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                createSnowflake();
+            }
+        }
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snow';
+            
+            // Random positioning and animation
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.width = snowflake.style.height = (Math.random() * 6 + 4) + 'px';
+            
+            document.body.appendChild(snowflake);
+            
+            // Remove snowflake after animation completes
+            snowflake.addEventListener('animationend', () => {
+                snowflake.remove();
+                createSnowflake();
+            });
+        }
+    </script>
+</body>
+</html>
